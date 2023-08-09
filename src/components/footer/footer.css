@@ -1,0 +1,14 @@
+.footer {
+    background-color: #0067A3;
+    width: 100%;
+}
+
+.footer__wrap {
+    display: flex;
+    flex-direction: row;
+    color: #FFFFFF;
+    justify-content: space-between;
+    line-height: 21px;
+    font-size: 18px;
+    padding: 20px 20px 20px 20px;
+}
