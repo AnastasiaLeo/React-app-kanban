@@ -3,7 +3,7 @@ import './main.css';
 
 function MainBody() {
     return(
-        <div className="main">
+        <div className="main"> 
             <div className="main__wrap container">
                 <div className="block__wrap">
                     <h2>Backlog</h2>
