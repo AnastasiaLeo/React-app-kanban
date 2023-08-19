@@ -1,0 +1,12 @@
+.taskWrap{
+    background-color: white;
+    border-radius: 5px;
+    margin: 11px 0px;
+    padding: 5px 8px;
+}
+
+.text{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+}

@@ -1,4 +1,4 @@
-const mockTasks = [
+export const mockTasks = [
     {
          title: 'backlog',
          issues: [
@@ -6,20 +6,15 @@ const mockTasks = [
                 id: '1',
                 name: 'Почистить кэш',
                 description: 'Для корректной работы приложения необходимо почистить кэш'
-             }
-        ]
-    },
-    {
-        title: 'backlog',
-        issues: [
-            {
+             },
+             {
                 id: '2',
                 name: 'Обновить приложение',
                 description: 'Старая версия приложения может работать неверно'
             }
-       ]
-   },
-   {
+        ]
+    },
+    {
         title: 'ready',
         issues: [
             {
