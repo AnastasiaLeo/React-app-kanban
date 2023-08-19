@@ -1,5 +1,6 @@
 import React from "react";
 import './btn.css';
+import Input from '../input/input.jsx';
 
 class Btn extends React.Component{
     constructor(props){
@@ -24,9 +25,13 @@ class Btn extends React.Component{
     render(){
         const clicked = this.state.clicked;
         return(
-            <button className={clicked ? "btn btn-submit" : "btn"} onClick={this.handleClick}>
-                {clicked ? 'Submit' : '+ Add cart'}
-            </button>
+            <div>
+                {/* <Input /> */}
+                {clicked ? <Input /> : ''}
+                <button className={clicked ? "btn btn-submit" : "btn"} onClick={this.handleClick}>
+                    {clicked ? 'Submit' : '+ Add cart'}
+                </button>
+            </div>
         )
     }
 }
