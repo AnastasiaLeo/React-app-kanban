@@ -5,42 +5,40 @@ import Btn from "../button/btn.jsx";
 import Input from '../input/input.jsx';
 import { mockTasks } from "./mock.js";
 
-const test = [ {id:1,name:'zz',desc:'aa'},{id:2,name:'xx',desc:'vv'} ]
+const test = [ {id:1,name:'zz',description:'aa'},{id:2,name:'xx',description:'vv'} ]
 localStorage.setItem('backlog', JSON.stringify(test))
 
 function MainBody () {
 
     let [ arrBacklog, setArrBacklog ] = useState( JSON.parse( localStorage.backlog ) );
-    let [ arrReady, setArrReady ] = useState( JSON.parse( localStorage.ready ) );
-    let [ arrInProgress, setArrInProgress ] = useState( JSON.parse( localStorage.inProgress ) );
-    let [ arrFinished, setArrFinished ] = useState( JSON.parse( localStorage.finished ) );
-    // localStorage.setItem( 'backlog', '' );
-    // localStorage.setItem( 'ready', '' );
-    // localStorage.setItem( 'inProgress', '' );
-    // localStorage.setItem( 'finished', '' );
+    // let [ arrReady, setArrReady ] = useState( JSON.parse( localStorage.ready ) );
+    // let [ arrInProgress, setArrInProgress ] = useState( JSON.parse( localStorage.inProgress ) );
+    // let [ arrFinished, setArrFinished ] = useState( JSON.parse( localStorage.finished ) );
 
     let [ click, setClick ] = useState(false);
     let [ newTask, setNewTask] = useState('');  
 
-    const handleOnClickBtn = () => {
-        if ( newTask ){
-            if ( click ) {
-                let arrBacklog1 = JSON.parse(localStorage.backlog).length > 0 ? JSON.parse( localStorage.backlog ) : [];
+    const handlerOnClickBtn = () => {
+        if ( click ) {
+            if ( newTask.trim().length > 0 ){
                 const addingTask = {
-                    id: arrBacklog1.length ? arrBacklog1[arrBacklog1.length - 1].id + 1 : 1,
+                    id: arrBacklog.length ? arrBacklog[arrBacklog.length - 1].id + 1 : 1,
                     name: newTask,
                     description: ''
                 }
-                console.log( arrBacklog1 );
-                arrBacklog1.push(addingTask);
-                localStorage.backlog = JSON.stringify( arrBacklog1 );
+                console.log( "внутри хэндлер" );
+                console.log( arrBacklog );
+                let newArrBacklog = arrBacklog;
+                newArrBacklog = [...arrBacklog, addingTask];
+                setArrBacklog(newArrBacklog);
+                localStorage.backlog = JSON.stringify( arrBacklog );
+                setNewTask("");
             }
-            click = setClick( !click );
         }
+        click = setClick( !click );
     }
     const handlerOnChangeInput = (event) => {
         setNewTask(event.target.value);
-        console.log(newTask);
     }
 
     const backlog = mockTasks.find(item => item.title === "backlog");
@@ -54,12 +52,12 @@ function MainBody () {
                         <h2>Backlog</h2>
                         <div className="block__task">
                             {
-                                backlog.issues.map( (task) => (
-                                    <Task key={task.id} name={task.name} description={task.description} />
+                                arrBacklog.map( (arr) => (
+                                    <Task key={arr.id} name={arr.name} description={arr.description} />
                                 ))
                             }
                             {click ? <Input value={newTask} onChange={handlerOnChangeInput} /> : ''}
-                            <Btn click={click} onClick={handleOnClickBtn} />
+                            <Btn click={click} onClick={handlerOnClickBtn} />
                         </div>
                     </div>
                     <div className="block__wrap">
