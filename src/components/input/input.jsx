@@ -1,9 +1,9 @@
 import React from "react";
 import './input.css';
 
-function Input ( { newTask } ) {
+function Input ( { value, onChange } ) {
     return(
-        <input className="input" type="text" />
+        <input className="input" type="text" value={value} onChange={onChange} />
     )
 }
 
