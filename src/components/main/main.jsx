@@ -8,7 +8,7 @@ import { mockTasks } from "./mock.js";
 const test = [ {id:1,name:'zz',description:'aa'},{id:2,name:'xx',description:'vv'} ]
 localStorage.setItem('backlog', JSON.stringify(test))
 
-function MainBody () {
+function MainBody ( { numActiveTasks, numFinishedTasks, changeActiveTasks, changeFinishedTasks } ) {
 
     let [ arrBacklog, setArrBacklog ] = useState( JSON.parse( localStorage.backlog ) );
     // let [ arrReady, setArrReady ] = useState( JSON.parse( localStorage.ready ) );
@@ -33,6 +33,7 @@ function MainBody () {
                 setArrBacklog(newArrBacklog);
                 localStorage.backlog = JSON.stringify( arrBacklog );
                 setNewTask("");
+                
             }
         }
         click = setClick( !click );
@@ -41,7 +42,7 @@ function MainBody () {
         setNewTask(event.target.value);
     }
 
-    const backlog = mockTasks.find(item => item.title === "backlog");
+    //const backlog = mockTasks.find(item => item.title === "backlog");
     const ready = mockTasks.find(item => item.title === "ready");
     const inProgress = mockTasks.find(item => item.title === "inProgress");
     const finished = mockTasks.find(item => item.title === "finished");
@@ -56,6 +57,7 @@ function MainBody () {
                                     <Task key={arr.id} name={arr.name} description={arr.description} />
                                 ))
                             }
+                            {changeActiveTasks(arrBacklog.length)}
                             {click ? <Input value={newTask} onChange={handlerOnChangeInput} /> : ''}
                             <Btn click={click} onClick={handlerOnClickBtn} />
                         </div>

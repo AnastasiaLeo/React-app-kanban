@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/header/header.jsx';
 import Footer from './components/footer/footer.jsx';
 import MainBody from './components/main/main.jsx';
 
 function App() {
+  let [ activeTasks, setActiveTasks ] = useState(0);
+  let [ finishedTasks, setFinishedTasks ] = useState(0);
+  const changeActiveTasks = (activeTasks) => {
+    setActiveTasks(activeTasks);
+  }
+  const changeFinishedTasks = () => {
+    finishedTasks(finishedTasks);
+  }
   return (
     <div>
         <Header />
-        <MainBody />
-        <Footer />
+        <MainBody activeTasks={activeTasks} finishedTasks={finishedTasks} changeActiveTasks={changeActiveTasks} changeFinishedTasks={changeFinishedTasks} />
+        <Footer activeTasks={activeTasks} finishedTasks={finishedTasks} />
     </div>
   );
 }
