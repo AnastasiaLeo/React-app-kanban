@@ -12,7 +12,7 @@
     grid-template-columns: repeat(4, 1fr);
 }
 
-.block__wrap {
+/* .block__wrap {
     background-color: #EBECF0;
     border: none;
     border-radius: 10px;
@@ -25,4 +25,4 @@
     font-size: 18px;
     line-height: 21px;
     padding: 3px 0px;
-}
+} */

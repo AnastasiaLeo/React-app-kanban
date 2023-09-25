@@ -1,101 +1,56 @@
 import React, {useState, useEffect} from "react";
 import './main.css';
-import Task from "../task/task.jsx";
-import Btn from "../button/btn.jsx";
-import Input from '../input/input.jsx';
-import { mockTasks } from "./mock.js";
+import BlockTask from "../block_task/block_task";
 
-const test = [ {id:1,name:'zz',description:'aa'},{id:2,name:'xx',description:'vv'} ]
-localStorage.setItem('backlog', JSON.stringify(test))
+const test = [ {id:1,name:'happy',description:'me'},{id:2,name:'cat',description:'meow'} ]
+const test1 = [ {id:1,name:'kissyou',description:'wow'},{id:2,name:'hugyou',description:'aww'} ]
+const test2 = [ {id:1,name:'loveyou',description:'eah'},{id:2,name:'adoreyou',description:'ouch'} ]
+const test3 = [ {id:1,name:'prettytoad',description:'eeeee'},{id:2,name:'greencrocodile',description:'vv'} ]
+localStorage.setItem('backlog', JSON.stringify(test));
+localStorage.setItem('ready', JSON.stringify(test1));
+localStorage.setItem('inProgress', JSON.stringify(test2));
+localStorage.setItem('finished', JSON.stringify(test3));
 
-function MainBody ( { numActiveTasks, numFinishedTasks, changeActiveTasks, changeFinishedTasks } ) {
+function MainBody ( { changeActiveTasks, changeFinishedTasks } ) { 
 
     let [ arrBacklog, setArrBacklog ] = useState( JSON.parse( localStorage.backlog ) );
-    // let [ arrReady, setArrReady ] = useState( JSON.parse( localStorage.ready ) );
-    // let [ arrInProgress, setArrInProgress ] = useState( JSON.parse( localStorage.inProgress ) );
-    // let [ arrFinished, setArrFinished ] = useState( JSON.parse( localStorage.finished ) );
+    let [ arrReady, setArrReady ] = useState( JSON.parse( localStorage.ready ) );
+    let [ arrInProgress, setArrInProgress ] = useState( JSON.parse( localStorage.inProgress ) );
+    let [ arrFinished, setArrFinished ] = useState( JSON.parse( localStorage.finished ) );
 
-    let [ click, setClick ] = useState(false);
-    let [ newTask, setNewTask] = useState('');  
+    useEffect( () => {
+        setArrBacklog(arrBacklog);
+        changeActiveTasks(arrBacklog.length);
+    } , [arrBacklog]);
+    useEffect( () => {
+        setArrReady(arrReady);
+    } , [arrReady]);
+    useEffect( () => {
+        setArrInProgress(arrInProgress);
+    } , [arrInProgress]);
+    useEffect( () => {
+        setArrFinished(arrFinished);
+        changeFinishedTasks(arrFinished.length);
+    } , [arrFinished]);
 
-    const handlerOnClickBtn = () => {
-        if ( click ) {
-            if ( newTask.trim().length > 0 ){
-                const addingTask = {
-                    id: arrBacklog.length ? arrBacklog[arrBacklog.length - 1].id + 1 : 1,
-                    name: newTask,
-                    description: ''
-                }
-                console.log( "внутри хэндлер" );
-                console.log( arrBacklog );
-                let newArrBacklog = arrBacklog;
-                newArrBacklog = [...arrBacklog, addingTask];
-                setArrBacklog(newArrBacklog);
-                localStorage.backlog = JSON.stringify( arrBacklog );
-                setNewTask("");
-                
-            }
-        }
-        click = setClick( !click );
-    }
-    const handlerOnChangeInput = (event) => {
-        setNewTask(event.target.value);
-    }
-
-    //const backlog = mockTasks.find(item => item.title === "backlog");
-    const ready = mockTasks.find(item => item.title === "ready");
-    const inProgress = mockTasks.find(item => item.title === "inProgress");
-    const finished = mockTasks.find(item => item.title === "finished");
     return(
-            <div className="main"> 
-                <div className="main__wrap container">
-                    <div className="block__wrap">
-                        <h2>Backlog</h2>
-                        <div className="block__task">
-                            {
-                                arrBacklog.map( (arr) => (
-                                    <Task key={arr.id} name={arr.name} description={arr.description} />
-                                ))
-                            }
-                            {changeActiveTasks(arrBacklog.length)}
-                            {click ? <Input value={newTask} onChange={handlerOnChangeInput} /> : ''}
-                            <Btn click={click} onClick={handlerOnClickBtn} />
-                        </div>
-                    </div>
-                    <div className="block__wrap">
-                        <h2>Ready</h2>
-                        <div className="block__task">
-                        {
-                            ready.issues.map( (ready) => (
-                                <Task key={ready.id} name={ready.name} description={ready.description} />
-                            ))
-                        }
-                        </div>
-                    </div>
-                    <div className="block__wrap">
-                        <h2>In Progress</h2>
-                        <div className="block__task">
-                        {
-                            inProgress.issues.map( (inProgress) => (
-                                <Task key={inProgress.id} name={inProgress.name} description={inProgress.description} />
-                            ))
-                        }
-                        </div>
-                    </div>
-                    <div className="block__wrap">
-                        <h2>Finished</h2>
-                        <div className="block__task">
-                        {
-                            finished.issues.map( (finished) => (
-                                <Task key={finished.id} name={finished.name} description={finished.description} />
-                            ))
-                        }
-                        </div>
-                    </div>
-                </div>
+        <div className="main"> 
+            <div className="main__wrap container">
+                <BlockTask arrTasks={arrBacklog} 
+                blockType="Backlog"
+                />
+                <BlockTask arrTasks={arrReady} 
+                blockType="Ready"
+                />
+                <BlockTask arrTasks={arrInProgress} 
+                blockType="In progress"
+                />
+                <BlockTask arrTasks={arrFinished} 
+                blockType="Finished"
+                /> 
             </div>
-        )
-    //}
+        </div>
+    )
 }
 
 export default MainBody;

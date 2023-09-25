@@ -9,13 +9,13 @@ function App() {
   const changeActiveTasks = (activeTasks) => {
     setActiveTasks(activeTasks);
   }
-  const changeFinishedTasks = () => {
-    finishedTasks(finishedTasks);
+  const changeFinishedTasks = (finishedTasks) => {
+    setFinishedTasks(finishedTasks);
   }
   return (
     <div>
         <Header />
-        <MainBody activeTasks={activeTasks} finishedTasks={finishedTasks} changeActiveTasks={changeActiveTasks} changeFinishedTasks={changeFinishedTasks} />
+        <MainBody changeActiveTasks={changeActiveTasks} changeFinishedTasks={changeFinishedTasks} />
         <Footer activeTasks={activeTasks} finishedTasks={finishedTasks} />
     </div>
   );
