@@ -4,7 +4,7 @@ import Task from "../task/task.jsx";
 import Btn from "../button/btn.jsx";
 import Input from '../input/input.jsx';
 
-function BlockTask ( {arrTasks, blockType} ) {
+function BlockTask ( {arrTasks, blockType, setNew} ) {
     let [ click, setClick ] = useState(false);
     let [ newTask, setNewTask] = useState('');  
     let [ localArr, setlocalArr ] = useState( arrTasks );
@@ -21,9 +21,11 @@ function BlockTask ( {arrTasks, blockType} ) {
                 console.log( localArr );
                 let newArrBacklog = localArr;
                 newArrBacklog = [...localArr, addingTask];
+                //console.log( newArrBacklog );
                 setlocalArr(newArrBacklog);
-                localStorage.backlog = JSON.stringify( localArr );
+                localStorage.backlog = JSON.stringify( newArrBacklog );
                 setNewTask("");
+                setNew(newArrBacklog);
             }
         }
         click = setClick( !click );

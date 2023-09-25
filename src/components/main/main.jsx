@@ -18,16 +18,25 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
     let [ arrInProgress, setArrInProgress ] = useState( JSON.parse( localStorage.inProgress ) );
     let [ arrFinished, setArrFinished ] = useState( JSON.parse( localStorage.finished ) );
 
+    const setNewBacklog = (localArr) => {
+        setArrBacklog(localArr);
+        changeActiveTasks(localArr.length);
+    }
+    const setNewReady = (localArr) => {
+        setArrReady(localArr);
+    }
+    const setNewInProgress = (localArr) => {
+        setArrInProgress(localArr);
+    }
+    const setNewFinished = (localArr) => {
+        setArrFinished(localArr);
+        changeFinishedTasks(arrFinished.length);
+    }
+
     useEffect( () => {
         setArrBacklog(arrBacklog);
         changeActiveTasks(arrBacklog.length);
     } , [arrBacklog]);
-    useEffect( () => {
-        setArrReady(arrReady);
-    } , [arrReady]);
-    useEffect( () => {
-        setArrInProgress(arrInProgress);
-    } , [arrInProgress]);
     useEffect( () => {
         setArrFinished(arrFinished);
         changeFinishedTasks(arrFinished.length);
@@ -38,15 +47,19 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
             <div className="main__wrap container">
                 <BlockTask arrTasks={arrBacklog} 
                 blockType="Backlog"
+                setNew = {setNewBacklog}
                 />
                 <BlockTask arrTasks={arrReady} 
                 blockType="Ready"
+                setNew = {setNewReady}
                 />
                 <BlockTask arrTasks={arrInProgress} 
                 blockType="In progress"
+                setNew = {setNewInProgress}
                 />
                 <BlockTask arrTasks={arrFinished} 
                 blockType="Finished"
+                setNew = {setNewFinished}
                 /> 
             </div>
         </div>
