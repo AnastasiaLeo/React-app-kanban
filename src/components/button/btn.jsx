@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './btn.css';
 
-
 function Btn ( { click, onClick } ){
     return(
         <div>

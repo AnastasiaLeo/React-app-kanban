@@ -20,7 +20,7 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
 
     const setNewBacklog = (localArr) => {
         setArrBacklog(localArr);
-        changeActiveTasks(localArr.length);
+        //changeActiveTasks(localArr.length);
     }
     const setNewReady = (localArr) => {
         setArrReady(localArr);
@@ -30,7 +30,17 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
     }
     const setNewFinished = (localArr) => {
         setArrFinished(localArr);
-        changeFinishedTasks(arrFinished.length);
+        //changeFinishedTasks(arrFinished.length);
+    }
+
+    const handlerSelectBacklog = ( arr, id ) => {
+
+    }
+    const handlerSelectReady = ( arr, id ) => {
+        
+    }
+    const handlerSelectInProgress = ( arr, id ) => {
+        
     }
 
     useEffect( () => {
@@ -52,14 +62,20 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
                 <BlockTask arrTasks={arrReady} 
                 blockType="Ready"
                 setNew = {setNewReady}
+                arrSelect={arrBacklog}
+                handlerArrSelect={handlerSelectBacklog}
                 />
                 <BlockTask arrTasks={arrInProgress} 
                 blockType="In progress"
                 setNew = {setNewInProgress}
+                arrSelect={arrReady}
+                handlerArrSelect={handlerSelectReady}
                 />
                 <BlockTask arrTasks={arrFinished} 
                 blockType="Finished"
                 setNew = {setNewFinished}
+                arrSelect={arrInProgress}
+                handlerArrSelect={handlerSelectInProgress}
                 /> 
             </div>
         </div>
