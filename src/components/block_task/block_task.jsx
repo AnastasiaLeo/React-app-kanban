@@ -10,7 +10,9 @@ function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect} 
     let [ click, setClick ] = useState(false);
     let [ newTask, setNewTask] = useState('');  
     let [ localArr, setlocalArr ] = useState( arrTasks );
-    let [ taskSelect, setTaskSelect ] = useState('');
+    let [ taskSelect, setTaskSelect ] = useState('');   //значение name, выбранное в инпут
+
+    let [ idTaskToDelete, setidTaskToDelete ] = useState(0);
 
     const handlerOnClickBtn = () => {
         if ( click ) {
@@ -26,9 +28,12 @@ function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect} 
                 newArrBacklog = [...localArr, addingTask];
                 //console.log( newArrBacklog );
                 setlocalArr(newArrBacklog);
-                localStorage.backlog = JSON.stringify( newArrBacklog );
                 setNewTask("");
                 setNew(newArrBacklog);
+            } else {
+                //console.log( idTaskToDelete );
+                console.log(idTaskToDelete);
+                handlerArrSelect( idTaskToDelete );
             }
         }
         click = setClick( !click );
@@ -38,7 +43,7 @@ function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect} 
     }
     const handlerOnchangeSelect = (event) => {
         setTaskSelect(event.target.value);
-        console.log(event.target.selectedIndex);
+        setidTaskToDelete(event.target.selectedIndex);
     }
     const inputOrSelect = () => {
         if (click){
