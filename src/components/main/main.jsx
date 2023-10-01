@@ -50,16 +50,13 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
         newObjectTask.id = newId+1; //поставим больше максимального индекса на 1
         const newArrAdding = [...arrReady, newObjectTask] //вставляем в конец
         
-        //setArrReady(newArrAdding);
-        setNewReady(newArrAdding);
         console.log('не верю', arrReady);
-        localStorage.ready = JSON.stringify( arrReady );
         //теперь удалим задачу из массива откуда забрали
         let newArrDelete = [...arrBacklog];
         newArrDelete.splice(id,1);
-        //setArrBacklog(newArrDelete);
+        
+        setNewReady(newArrAdding);
         setNewBacklog(newArrDelete);
-        localStorage.backlog = JSON.stringify( arrBacklog );
     }
     const handlerSelectInProgress = ( id ) => {
         
