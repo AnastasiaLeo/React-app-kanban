@@ -38,7 +38,7 @@ function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect} 
     }
     const handlerOnchangeSelect = (event) => {
         setTaskSelect(event.target.value);
-        console.log(event.target.selectedIndex);
+        console.log(arrSelect[event.target.selectedIndex].id);
     }
     const inputOrSelect = () => {
         if (click){

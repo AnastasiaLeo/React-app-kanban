@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import './main.css';
 import BlockTask from "../block_task/block_task";
 
-const test = [ {id:1,name:'happy',description:'me'},{id:2,name:'cat',description:'meow'} ]
+const test = [ {id:1,name:'happy',description:'me'},{id:345,name:'cat',description:'meow'} ]
 const test1 = [ {id:1,name:'kissyou',description:'wow'},{id:2,name:'hugyou',description:'aww'} ]
 const test2 = [ {id:1,name:'loveyou',description:'eah'},{id:2,name:'adoreyou',description:'ouch'} ]
 const test3 = [ {id:1,name:'prettytoad',description:'eeeee'},{id:2,name:'greencrocodile',description:'vv'} ]
