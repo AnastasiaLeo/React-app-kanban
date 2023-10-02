@@ -15,7 +15,7 @@ function SelectTask ({ arrSelect, handlerArrSelect, value, onChange }) {
 
     return (
         <div>
-            <select value={value} onChange={onChange} >
+            <select value={value} onChange={onChange} className="select" >
                 {options}
             </select>
         </div>

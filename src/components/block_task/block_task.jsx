@@ -9,26 +9,30 @@ import SelectTask from "../select/select.jsx";
 function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect} ) {
     let [ click, setClick ] = useState(false);
     let [ newTask, setNewTask] = useState('');  
-    let [ localArr, setlocalArr ] = useState( arrTasks );
-    let [ taskSelect, setTaskSelect ] = useState('');
+    //let [ localArr, setlocalArr ] = useState( arrTasks );
+    let [ taskSelect, setTaskSelect ] = useState('');   //значение name, выбранное в инпут
 
+    let [ idTaskToDelete, setidTaskToDelete ] = useState(0);
     const handlerOnClickBtn = () => {
         if ( click ) {
             if ( newTask.trim().length > 0 ){
                 const addingTask = {
-                    id: localArr.length ? localArr[localArr.length - 1].id + 1 : 1,
+                    id: arrTasks.length ? arrTasks[arrTasks.length - 1].id + 1 : 1,
                     name: newTask,
                     description: ''
                 }
-                console.log( "внутри хэндлер" );
-                console.log( localArr );
-                let newArrBacklog = localArr;
-                newArrBacklog = [...localArr, addingTask];
+                let newArrBacklog = arrTasks;
+                newArrBacklog = [...arrTasks, addingTask];
                 //console.log( newArrBacklog );
-                setlocalArr(newArrBacklog);
-                localStorage.backlog = JSON.stringify( newArrBacklog );
+                //setlocalArr(newArrBacklog);
                 setNewTask("");
                 setNew(newArrBacklog);
+            } else {
+                //console.log( idTaskToDelete );
+                console.log(idTaskToDelete);
+                const newArrBacklog = [{id:444,name:'www'},{id:555,name:'lol'}];
+                //setlocalArr(newArrBacklog);
+                handlerArrSelect( idTaskToDelete  );
             }
         }
         click = setClick( !click );
@@ -38,7 +42,7 @@ function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect} 
     }
     const handlerOnchangeSelect = (event) => {
         setTaskSelect(event.target.value);
-        console.log(arrSelect[event.target.selectedIndex].id);
+        setidTaskToDelete(event.target.selectedIndex);
     }
     const inputOrSelect = () => {
         if (click){
@@ -55,7 +59,7 @@ function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect} 
             <h2>{blockType}</h2>
             <div className="block__task">
                 {
-                    localArr.map( (item) => (
+                    arrTasks.map( (item) => (
                         <Task key={item.id} name={item.name} description={item.description} />
                     ))
                 }
