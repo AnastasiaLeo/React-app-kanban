@@ -30,8 +30,6 @@ function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect} 
             } else {
                 //console.log( idTaskToDelete );
                 console.log(idTaskToDelete);
-                const newArrBacklog = [{id:444,name:'www'},{id:555,name:'lol'}];
-                //setlocalArr(newArrBacklog);
                 handlerArrSelect( idTaskToDelete  );
             }
         }

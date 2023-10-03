@@ -1,0 +1,39 @@
+.list_wrap {
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    padding: 5px 7px;
+}
+
+.list__item {
+    font-size: 14px;
+    line-height: 16px;
+    color: black;
+    padding: 3px 1px;
+    margin: 3px 0px;
+}
+
+.list__item:hover {
+    background-color: #DEDEDE;
+    cursor: pointer;
+}
+
+.list__triangle {
+    height: 11px;
+    width: 11px;
+    background-color: rgb(255, 255, 255);
+    transform: rotate(45deg);
+    position: absolute;
+    top: -5px;
+    right: 38px;
+}
+
+.wrap {
+    position: absolute;
+    z-index: 100;   
+    /* его можно убрать */
+    top: 48px;
+    right: 0px;
+    min-width: 134px;
+}

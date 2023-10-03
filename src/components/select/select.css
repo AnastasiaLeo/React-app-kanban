@@ -17,5 +17,7 @@
 .select:hover { 
     border-color: #888; 
     cursor: pointer;
+    border: none;
 } 
-.select-css option { font-weight:normal; } 
+.select-css option { font-weight:normal; }
+.select-css option:hover { background-color: grey; } 
