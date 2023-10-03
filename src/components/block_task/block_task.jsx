@@ -6,7 +6,7 @@ import Input from '../input/input.jsx';
 import '../select/select.jsx';
 import SelectTask from "../select/select.jsx";
 
-function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect} ) {
+function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect, clickShowDescription} ) {
     let [ click, setClick ] = useState(false);
     let [ newTask, setNewTask] = useState('');  
     //let [ localArr, setlocalArr ] = useState( arrTasks );
@@ -58,10 +58,9 @@ function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect} 
             <div className="block__task">
                 {
                     arrTasks.map( (item) => (
-                        <Task key={item.id} name={item.name} description={item.description} />
+                        <Task key={item.id} name={item.name} clickShowDescription={clickShowDescription} blockType={blockType}/> //нужен ли дескрипшн вообще?  description={item.description}
                     ))
                 }
-                { /*{click ? <Input value={newTask} onChange={handlerOnChangeInput} /> : ''} */}
                 { inputOrSelect() }
                 <Btn click={click} onClick={handlerOnClickBtn} />
             </div>

@@ -1,10 +1,10 @@
 import React from "react";
 import './task.css';
 
-function TaskWrap ({ name, description }) {
-    
+function TaskWrap ({ id, name, clickShowDescription, blockType }) {
+
     return(
-        <div className="taskWrap">
+        <div className="taskWrap" onMouseDown={() => clickShowDescription(blockType, id)}>
             <p className="text">
                 {name}
             </p>

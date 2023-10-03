@@ -56,6 +56,10 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
         setArrInProgress(newArrDelete);
     }
 
+    const clickShowDescription = (blockType) => {
+        console.log(blockType);
+    }
+
     useEffect( () => {
         //setArrBacklog(arrBacklog);
         changeActiveTasks(arrBacklog.length);
@@ -71,24 +75,28 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
                 <BlockTask arrTasks={arrBacklog} 
                 blockType="Backlog"
                 setNew = {setNewBacklog}
+                clickShowDescription = {clickShowDescription}
                 />
                 <BlockTask arrTasks={arrReady} 
                 blockType="Ready"
                 setNew = {setNewReady}
                 arrSelect={arrBacklog}
                 handlerArrSelect={handlerSelectReady}
+                clickShowDescription = {clickShowDescription}
                 />
                 <BlockTask arrTasks={arrInProgress} 
                 blockType="In progress"
                 setNew = {setNewInProgress}
                 arrSelect={arrReady}
                 handlerArrSelect={handlerSelectInProgress}
+                clickShowDescription = {clickShowDescription}
                 />
                 <BlockTask arrTasks={arrFinished} 
                 blockType="Finished"
                 setNew = {setNewFinished}
                 arrSelect={arrInProgress}
                 handlerArrSelect={handlerSelectFinished}
+                clickShowDescription = {clickShowDescription}
                 /> 
             </div>
         </div>
