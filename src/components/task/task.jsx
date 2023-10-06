@@ -4,7 +4,7 @@ import './task.css';
 function TaskWrap ({ id, name, clickShowDescription, blockType }) {
 
     return(
-        <div className="taskWrap" onMouseDown={() => clickShowDescription(blockType, id)}>
+        <div className="taskWrap" onMouseDown={clickShowDescription}>
             <p className="text">
                 {name}
             </p>

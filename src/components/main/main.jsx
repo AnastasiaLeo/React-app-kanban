@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import './main.css';
 import BlockTask from "../block_task/block_task";
+import TextAreaDesription from "../textarea/textarea";
 
 const test = [ {id:344,name:'happy',description:'me'},{id:2,name:'cat',description:'meow'} ]
 const test1 = [ {id:1,name:'kissyou',description:'wow'},{id:2,name:'hugyou',description:'aww'} ]
@@ -17,6 +18,7 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
     let [ arrReady, setArrReady ] = useState( JSON.parse( localStorage.ready ) );
     let [ arrInProgress, setArrInProgress ] = useState( JSON.parse( localStorage.inProgress ) );
     let [ arrFinished, setArrFinished ] = useState( JSON.parse( localStorage.finished ) );
+    let [ showDescription, setshowDescription ] = useState(false);
 
     const setNewBacklog = (localArr) => {
         setArrBacklog(localArr);
@@ -56,8 +58,9 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
         setArrInProgress(newArrDelete);
     }
 
-    const clickShowDescription = (blockType) => {
-        console.log(blockType);
+    const clickShowDescription = (blockType, id) => {
+        console.log(blockType, id);
+        setshowDescription(true);
     }
 
     useEffect( () => {
@@ -68,39 +71,48 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
         //setArrFinished(arrFinished);
         changeFinishedTasks(arrFinished.length);
     } , [arrFinished]);
-
+    
     return(
         <div className="main"> 
             <div className="main__wrap container">
-                <BlockTask arrTasks={arrBacklog} 
-                blockType="Backlog"
-                setNew = {setNewBacklog}
-                clickShowDescription = {clickShowDescription}
-                />
-                <BlockTask arrTasks={arrReady} 
-                blockType="Ready"
-                setNew = {setNewReady}
-                arrSelect={arrBacklog}
-                handlerArrSelect={handlerSelectReady}
-                clickShowDescription = {clickShowDescription}
-                />
-                <BlockTask arrTasks={arrInProgress} 
-                blockType="In progress"
-                setNew = {setNewInProgress}
-                arrSelect={arrReady}
-                handlerArrSelect={handlerSelectInProgress}
-                clickShowDescription = {clickShowDescription}
-                />
-                <BlockTask arrTasks={arrFinished} 
-                blockType="Finished"
-                setNew = {setNewFinished}
-                arrSelect={arrInProgress}
-                handlerArrSelect={handlerSelectFinished}
-                clickShowDescription = {clickShowDescription}
-                /> 
+                { !showDescription ? (<>
+                    <BlockTask arrTasks={arrBacklog} 
+                    blockType="Backlog"
+                    setNew = {setNewBacklog}
+                    clickShowDescription = {clickShowDescription}
+                    />
+                    <BlockTask arrTasks={arrReady} 
+                    blockType="Ready"
+                    setNew = {setNewReady}
+                    arrSelect={arrBacklog}
+                    handlerArrSelect={handlerSelectReady}
+                    clickShowDescription = {clickShowDescription}
+                    />
+                    <BlockTask arrTasks={arrInProgress} 
+                    blockType="In progress"
+                    setNew = {setNewInProgress}
+                    arrSelect={arrReady}
+                    handlerArrSelect={handlerSelectInProgress}
+                    clickShowDescription = {clickShowDescription}
+                    />
+                    <BlockTask arrTasks={arrFinished} 
+                    blockType="Finished"
+                    setNew = {setNewFinished}
+                    arrSelect={arrInProgress}
+                    handlerArrSelect={handlerSelectFinished}
+                    clickShowDescription = {clickShowDescription}
+                    /> </>)
+                    : (
+                        <TextAreaDesription />
+                    )
+                }
             </div>
         </div>
     )
+    
+    // return (
+    //     <TextAreaDesription id
+    // )
 }
 
 export default MainBody;
