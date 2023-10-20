@@ -3,7 +3,7 @@ import './textarea.css';
 
 function TextAreaDesription({ id, name, description }){
     return(
-        <div className="">
+        <div className="text-container">
             <p>Привет</p>
         </div>
     )
