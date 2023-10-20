@@ -4,8 +4,8 @@ import BlockTask from "../block_task/block_task";
 import TextAreaDesription from "../textarea/textarea";
 
 const test = [ {id:344,name:'happy',description:'me'},{id:2,name:'cat',description:'meow'} ]
-const test1 = [ {id:1,name:'kissyou',description:'wow'},{id:2,name:'hugyou',description:'aww'} ]
-const test2 = [ {id:1,name:'loveyou',description:'eah'},{id:2,name:'adoreyou',description:'ouch'} ]
+const test1 = [ {id:1,name:'red parrot',description:'wow'},{id:2,name:'pumpkin',description:'aww'} ]
+const test2 = [ {id:1,name:'',description:'eah'},{id:2,name:'white duck',description:'ouch'} ]
 const test3 = [ {id:1,name:'prettytoad',description:'eeeee'},{id:2,name:'greencrocodile',description:'vv'} ]
 localStorage.setItem('backlog', JSON.stringify(test));
 localStorage.setItem('ready', JSON.stringify(test1));
