@@ -1,6 +1,4 @@
-.wrap-text{
-    max-width: 1181px;
-    border: none;
+.text-container {
+    background-color: white;
     border-radius: 5px;
-    background-color: #FFFFFF;
 }
