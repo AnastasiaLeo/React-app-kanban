@@ -64,18 +64,17 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
     }
 
     useEffect( () => {
-        //setArrBacklog(arrBacklog);
         changeActiveTasks(arrBacklog.length);
     } , [arrBacklog]);
     useEffect( () => {
-        //setArrFinished(arrFinished);
         changeFinishedTasks(arrFinished.length);
     } , [arrFinished]);
     
     return(
         <div className="main"> 
-            <div className="main__wrap container">
-                { !showDescription ? (<>
+            
+                { !showDescription ? (
+                <div className="main__wrap container">
                     <BlockTask arrTasks={arrBacklog} 
                     blockType="Backlog"
                     setNew = {setNewBacklog}
@@ -101,12 +100,11 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
                     arrSelect={arrInProgress}
                     handlerArrSelect={handlerSelectFinished}
                     clickShowDescription = {clickShowDescription}
-                    /> </>)
+                    /> </div>)
                     : (
                         <TextAreaDesription />
                     )
                 }
-            </div>
         </div>
     )
     

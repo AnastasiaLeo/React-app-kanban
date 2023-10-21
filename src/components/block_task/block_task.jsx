@@ -58,10 +58,10 @@ function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect, 
             <div className="block__task">
                 {
                     arrTasks.map( (item) => (
-                        <Task key={item.id} name={item.name} clickShowDescription={() => clickShowDescription(blockType,item.id)} blockType={blockType}/> 
+                        <Task key={item.id} name={item.name} clickShowDescription={() => clickShowDescription(blockType,item.id)} blockType={blockType}/>
                     ))
                 }
-                { inputOrSelect() }
+                                { inputOrSelect() }
                 <Btn click={click} onClick={handlerOnClickBtn} />
             </div>
         </div>
