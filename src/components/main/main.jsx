@@ -65,11 +65,9 @@ function MainBody ( {changeActiveTasks, changeFinishedTasks} ) {
     }
 
     useEffect( () => {
-        //setArrBacklog(arrBacklog);
         changeActiveTasks(arrBacklog.length);
     } , [arrBacklog]);
     useEffect( () => {
-        //setArrFinished(arrFinished);
         changeFinishedTasks(arrFinished.length);
     } , [arrFinished]);
     
