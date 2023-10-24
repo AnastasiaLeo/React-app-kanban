@@ -1,14 +1,12 @@
 import React, {useState, useEffect} from "react";
 import './main.css';
 import BlockTask from "../block_task/block_task";
-// import TextAreaDesription from "../textarea/textarea.jsx";
-import Header from '../header/header.jsx';
-import Footer from '../footer/footer.jsx';
 
-const test = [ {id:344,name:'happy',description:'me'},{id:2,name:'cat',description:'meow'} ]
-const test1 = [ {id:1,name:'red parrot',description:'wow'},{id:2,name:'pumpkin',description:'aww'} ]
-const test2 = [ {id:1,name:'ssss',description:'eah'},{id:2,name:'white duck',description:'ouch'} ]
-const test3 = [ {id:1,name:'prettytoad',description:'eeeee'},{id:2,name:'greencrocodile',description:'vv'} ]
+
+const test = [ {id:344,name:'happy',description:'me',dateTask:new Date('2019-05-306T22:00')},{id:2,name:'cat',description:'meow',dateTask:new Date('2019-02-106T05:00')} ]
+const test1 = [ {id:1,name:'red parrot',description:'wow',dateTask:new Date('2023-06-296T15:00')},{id:2,name:'pumpkin',description:'aww',dateTask:new Date('2023-05-036T11:22')} ]
+const test2 = [ {id:1,name:'ssss',description:'eah',dateTask:new Date('2023-12-126T19:40')},{id:2,name:'white duck',description:'ouch',dateTask:new Date('2021-07-016T14:12')} ]
+const test3 = [ {id:1,name:'prettytoad',description:'eeeee',dateTask:new Date('2023-08-156T19:30')},{id:2,name:'greencrocodile',description:'vv',dateTask:new Date('2023-07-156T15:00')} ]
 localStorage.setItem('backlog', JSON.stringify(test));
 localStorage.setItem('ready', JSON.stringify(test1));
 localStorage.setItem('inProgress', JSON.stringify(test2));
@@ -20,7 +18,7 @@ function MainBody ( {changeActiveTasks, changeFinishedTasks} ) {
     let [ arrReady, setArrReady ] = useState( JSON.parse( localStorage.ready ) );
     let [ arrInProgress, setArrInProgress ] = useState( JSON.parse( localStorage.inProgress ) );
     let [ arrFinished, setArrFinished ] = useState( JSON.parse( localStorage.finished ) );
-    let [ showDescription, setshowDescription ] = useState(false);
+    // let [ showDescription, setshowDescription ] = useState(false);
 
     const setNewBacklog = (localArr) => {
         setArrBacklog(localArr);
@@ -112,10 +110,7 @@ function MainBody ( {changeActiveTasks, changeFinishedTasks} ) {
             {/* <Footer activeTasks={arrBacklog.length} finishedTasks={arrFinished.length} />    */}
         </>
     )
-    
-    // return (
-    //     <TextAreaDesription id
-    // )
+
 }
 
 export default MainBody;

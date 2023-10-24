@@ -19,8 +19,10 @@ function BlockTask ( {arrTasks, blockType, setNew, arrSelect, handlerArrSelect, 
                 const addingTask = {
                     id: arrTasks.length ? arrTasks[arrTasks.length - 1].id + 1 : 1,
                     name: newTask,
-                    description: ''
+                    description: '',
+                    dateTask: new Date()
                 }
+                console.log(addingTask.dateTask);
                 let newArrBacklog = arrTasks;
                 newArrBacklog = [...arrTasks, addingTask];
                 //console.log( newArrBacklog );
