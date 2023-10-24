@@ -1,16 +1,20 @@
 import React from "react";
 import './task.css';
-import TextAreaDesription from "../textarea/textarea";
+import { Link } from 'react-router-dom';
 
-function TaskWrap ({ id, name, clickShowDescription, blockType }) {
+function TaskWrap ({ id, name, blockType, clickShowDescription }) {
 
     return(
-        <div className="taskWrap" onMouseDown={clickShowDescription}>
+        <div className="taskWrap" onMouseDown={clickShowDescription}>   
             <p className="text">
-                {name}
+                <Link key={id} to={`/${blockType}/${id}`}>
+                    {name}
+                </Link>
             </p>
         </div>
     )
 }
 
 export default TaskWrap;
+
+//убрать onMouseDown за него теперь Link

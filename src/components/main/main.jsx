@@ -1,29 +1,29 @@
 import React, {useState, useEffect} from "react";
 import './main.css';
 import BlockTask from "../block_task/block_task";
-import TextAreaDesription from "../textarea/textarea";
 
-const test = [ {id:344,name:'happy',description:'me'},{id:2,name:'cat',description:'meow'} ]
-const test1 = [ {id:1,name:'red parrot',description:'wow'},{id:2,name:'pumpkin',description:'aww'} ]
-const test2 = [ {id:1,name:'lol',description:'eah'},{id:2,name:'white duck',description:'ouch'} ]
-const test3 = [ {id:1,name:'prettytoad',description:'eeeee'},{id:2,name:'greencrocodile',description:'vv'} ]
+
+const test = [ {id:344,name:'happy',description:'me',dateTask:new Date('2019-05-306T22:00')},{id:2,name:'cat',description:'meow',dateTask:new Date('2019-02-106T05:00')} ]
+const test1 = [ {id:1,name:'red parrot',description:'wow',dateTask:new Date('2023-06-296T15:00')},{id:2,name:'pumpkin',description:'aww',dateTask:new Date('2023-05-036T11:22')} ]
+const test2 = [ {id:1,name:'ssss',description:'eah',dateTask:new Date('2023-12-126T19:40')},{id:2,name:'white duck',description:'ouch',dateTask:new Date('2021-07-016T14:12')} ]
+const test3 = [ {id:1,name:'prettytoad',description:'eeeee',dateTask:new Date('2023-08-156T19:30')},{id:2,name:'greencrocodile',description:'vv',dateTask:new Date('2023-07-156T15:00')} ]
 localStorage.setItem('backlog', JSON.stringify(test));
 localStorage.setItem('ready', JSON.stringify(test1));
 localStorage.setItem('inProgress', JSON.stringify(test2));
 localStorage.setItem('finished', JSON.stringify(test3));
 
-function MainBody ( { changeActiveTasks, changeFinishedTasks } ) { 
+function MainBody ( {changeActiveTasks, changeFinishedTasks} ) { 
 
     let [ arrBacklog, setArrBacklog ] = useState( JSON.parse( localStorage.backlog ) );
     let [ arrReady, setArrReady ] = useState( JSON.parse( localStorage.ready ) );
     let [ arrInProgress, setArrInProgress ] = useState( JSON.parse( localStorage.inProgress ) );
     let [ arrFinished, setArrFinished ] = useState( JSON.parse( localStorage.finished ) );
-    let [ showDescription, setshowDescription ] = useState(false);
+    // let [ showDescription, setshowDescription ] = useState(false);
 
     const setNewBacklog = (localArr) => {
         setArrBacklog(localArr);
         localStorage.backlog = JSON.stringify( localArr );
-        //changeActiveTasks(localArr.length);
+        changeActiveTasks(localArr.length);
     }
     const setNewReady = (localArr) => {
         setArrReady(localArr);
@@ -36,7 +36,7 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
     const setNewFinished = (localArr) => {
         setArrFinished(localArr);
         localStorage.finished = JSON.stringify( localArr );
-        //changeFinishedTasks(arrFinished.length);
+        changeFinishedTasks(arrFinished.length);
     }
 
     const handlerSelectReady = ( id ) => {  //в id элемент, который мы планируем удалить из предыдущего массива и вставить в новый
@@ -59,8 +59,7 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
     }
 
     const clickShowDescription = (blockType, id) => {
-        console.log(blockType, id);
-        setshowDescription(true);
+        // setshowDescription(true);
     }
 
     useEffect( () => {
@@ -71,46 +70,47 @@ function MainBody ( { changeActiveTasks, changeFinishedTasks } ) {
     } , [arrFinished]);
     
     return(
-        <div className="main"> 
-            
-                { !showDescription ? (
+        <>
+            {/* <Header /> */}
+            {/* <div className="main">  */}
                 <div className="main__wrap container">
-                    <BlockTask arrTasks={arrBacklog} 
-                    blockType="Backlog"
-                    setNew = {setNewBacklog}
-                    clickShowDescription = {clickShowDescription}
-                    />
-                    <BlockTask arrTasks={arrReady} 
-                    blockType="Ready"
-                    setNew = {setNewReady}
-                    arrSelect={arrBacklog}
-                    handlerArrSelect={handlerSelectReady}
-                    clickShowDescription = {clickShowDescription}
-                    />
-                    <BlockTask arrTasks={arrInProgress} 
-                    blockType="In progress"
-                    setNew = {setNewInProgress}
-                    arrSelect={arrReady}
-                    handlerArrSelect={handlerSelectInProgress}
-                    clickShowDescription = {clickShowDescription}
-                    />
-                    <BlockTask arrTasks={arrFinished} 
-                    blockType="Finished"
-                    setNew = {setNewFinished}
-                    arrSelect={arrInProgress}
-                    handlerArrSelect={handlerSelectFinished}
-                    clickShowDescription = {clickShowDescription}
-                    /> </div>)
-                    : (
-                        <TextAreaDesription />
-                    )
-                }
-        </div>
+                    {/* { !showDescription ? (<> */}
+                        <BlockTask arrTasks={arrBacklog} 
+                        blockType="Backlog"
+                        setNew = {setNewBacklog}
+                        clickShowDescription = {clickShowDescription}
+                        />
+                        <BlockTask arrTasks={arrReady} 
+                        blockType="Ready"
+                        setNew = {setNewReady}
+                        arrSelect={arrBacklog}
+                        handlerArrSelect={handlerSelectReady}
+                        clickShowDescription = {clickShowDescription}
+                        />
+                        <BlockTask arrTasks={arrInProgress} 
+                        blockType="In progress"
+                        setNew = {setNewInProgress}
+                        arrSelect={arrReady}
+                        handlerArrSelect={handlerSelectInProgress}
+                        clickShowDescription = {clickShowDescription}
+                        />
+                        <BlockTask arrTasks={arrFinished} 
+                        blockType="Finished"
+                        setNew = {setNewFinished}
+                        arrSelect={arrInProgress}
+                        handlerArrSelect={handlerSelectFinished}
+                        clickShowDescription = {clickShowDescription}
+                        /> 
+                        {/* : (</>
+                            <TextAreaDesription />
+                        ) */}
+                    
+                </div>
+            {/* </div> */}
+            {/* <Footer activeTasks={arrBacklog.length} finishedTasks={arrFinished.length} />    */}
+        </>
     )
-    
-    // return (
-    //     <TextAreaDesription id
-    // )
+
 }
 
 export default MainBody;

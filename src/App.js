@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Header from './components/header/header.jsx';
 import Footer from './components/footer/footer.jsx';
 import MainBody from './components/main/main.jsx';
+import { Route, Routes } from 'react-router-dom';
+import TextAreaDesription from "./components/textarea/textarea.jsx";
 
 function App() {
   let [ activeTasks, setActiveTasks ] = useState(0);
@@ -14,12 +16,20 @@ function App() {
   }
   return (
     <div>
+      
         <Header />
-        <MainBody changeActiveTasks={changeActiveTasks} changeFinishedTasks={changeFinishedTasks} />
+        <div className="main">
+          <Routes>
+            <Route path="/" element={<MainBody changeActiveTasks={changeActiveTasks} changeFinishedTasks={changeFinishedTasks}  />}></Route>
+            <Route path="/:tasks/:taskId" element={<TextAreaDesription />}></Route>
+          </Routes> 
+        </div>
         <Footer activeTasks={activeTasks} finishedTasks={finishedTasks} />
+        
     </div>
   );
 }
 
 export default App;
-//я тут
+//я тут <MainBody changeActiveTasks={changeActiveTasks} changeFinishedTasks={changeFinishedTasks} />
+{/* <Footer activeTasks={activeTasks} finishedTasks={finishedTasks} /> */}
