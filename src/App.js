@@ -4,6 +4,7 @@ import Footer from './components/footer/footer.jsx';
 import MainBody from './components/main/main.jsx';
 import { Route, Routes } from 'react-router-dom';
 import TextAreaDesription from "./components/textarea/textarea.jsx";
+import NotFoundPage from "./components/not_found_page/not_found_page.jsx";
 
 function App() {
   let [ activeTasks, setActiveTasks ] = useState(0);
@@ -14,18 +15,18 @@ function App() {
   const changeFinishedTasks = (finishedTasks) => {
     setFinishedTasks(finishedTasks);
   }
+  
   return (
     <div>
-      
         <Header />
         <div className="main">
           <Routes>
             <Route path="/" element={<MainBody changeActiveTasks={changeActiveTasks} changeFinishedTasks={changeFinishedTasks}  />}></Route>
             <Route path="/:tasks/:taskId" element={<TextAreaDesription />}></Route>
+            <Route path="*" element={<NotFoundPage />}></Route>
           </Routes> 
         </div>
         <Footer activeTasks={activeTasks} finishedTasks={finishedTasks} />
-        
     </div>
   );
 }

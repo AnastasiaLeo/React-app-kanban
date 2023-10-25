@@ -1,9 +1,9 @@
 import React from "react";
 import './task.css';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
-function TaskWrap ({ id, name, blockType, clickShowDescription }) {
-
+function TaskWrap ({ id, name, blockType, arrTasks, clickShowDescription }) {
+    
     return(
         <div className="taskWrap" onMouseDown={clickShowDescription}>   
             <p className="text">
@@ -11,6 +11,7 @@ function TaskWrap ({ id, name, blockType, clickShowDescription }) {
                     {name}
                 </Link>
             </p>
+            <Outlet context={{ hello: "wow" }} />
         </div>
     )
 }
