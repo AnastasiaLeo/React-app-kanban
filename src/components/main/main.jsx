@@ -3,10 +3,10 @@ import './main.css';
 import BlockTask from "../block_task/block_task";
 
 
-const test = [ {id:344,name:'happy',description:'me',dateTask:new Date('2019-05-306T22:00')},{id:2,name:'cat',description:'meow',dateTask:new Date('2019-02-106T05:00')} ]
-const test1 = [ {id:1,name:'red parrot',description:'wow',dateTask:new Date('2023-06-296T15:00')},{id:2,name:'pumpkin',description:'aww',dateTask:new Date('2023-05-036T11:22')} ]
-const test2 = [ {id:1,name:'ssss',description:'eah',dateTask:new Date('2023-12-126T19:40')},{id:2,name:'white duck',description:'ouch',dateTask:new Date('2021-07-016T14:12')} ]
-const test3 = [ {id:1,name:'prettytoad',description:'eeeee',dateTask:new Date('2023-08-156T19:30')},{id:2,name:'greencrocodile',description:'vv',dateTask:new Date('2023-07-156T15:00')} ]
+const test = [ {id:344,name:'happy',description:'me',dateTask:new Date(2023,1,29).toISOString()},{id:2,name:'cat',description:'meow',dateTask:new Date(2023,5,29).toISOString()} ]
+const test1 = [ {id:1,name:'red parrot',description:'wow',dateTask:new Date(2022,3,32).toISOString()},{id:2,name:'pumpkin',description:'aww',dateTask:new Date(2023,2,15).toISOString()} ]
+const test2 = [ {id:1,name:'ssss',description:'eah',dateTask:new Date(2023,7,16).toISOString()},{id:2,name:'white duck',description:'ouch',dateTask:new Date(2022,13,22).toISOString()} ]
+const test3 = [ {id:1,name:'prettytoad',description:'eeeee',dateTask:new Date(2023,8,2).toISOString()},{id:2,name:'greencrocodile',description:'vv',dateTask:new Date(2023,4,20).toISOString()} ]
 localStorage.setItem('backlog', JSON.stringify(test));
 localStorage.setItem('ready', JSON.stringify(test1));
 localStorage.setItem('inProgress', JSON.stringify(test2));
@@ -58,7 +58,7 @@ function MainBody ( {changeActiveTasks, changeFinishedTasks} ) {
         setArrInProgress(newArrDelete);
     }
 
-    const clickShowDescription = (blockType, id) => {
+    const clickShowDescription = (blockType, id) => {   //вызов описания по клику, убрать
         // setshowDescription(true);
     }
 

@@ -11,7 +11,7 @@ function TaskWrap ({ id, name, blockType, arrTasks, clickShowDescription }) {
                     {name}
                 </Link>
             </p>
-            <Outlet context={{ hello: "wow" }} />
+            {/* <Outlet context={{ hello: "wow" }} /> */}
         </div>
     )
 }

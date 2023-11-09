@@ -22,7 +22,7 @@ function App() {
         <div className="main">
           <Routes>
             <Route path="/" element={<MainBody changeActiveTasks={changeActiveTasks} changeFinishedTasks={changeFinishedTasks}  />}></Route>
-            <Route path="/:tasks/:taskId" element={<TextAreaDesription />}></Route>
+            <Route path="/:task/:taskId" element={<TextAreaDesription />}></Route>
             <Route path="*" element={<NotFoundPage />}></Route>
           </Routes> 
         </div>
